@@ -12,18 +12,7 @@ let JwtStrategy = passportJWT.Strategy;
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = "wowow";
-// const createUser = async ({ name, password }) => {
-//   return await db.User.create({ name, password });
-// };
-// const getAllUsers = async () => {
-//   return await db.User.findAll();
-// };
-// const getUser = async obj => {
-//   return await db.User.findOne({
-//     where: obj
-//   });
-// };
-// lets create our strategy for web token
+
 // eslint-disable-next-line camelcase
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log("payload received", jwt_payload);
@@ -57,7 +46,7 @@ module.exports = function(app) {
     });
   });
   // register route
-  app.post("/register", function(req, res) {
+  app.post("/api/user", function(req, res) {
     console.log(req.body);
     db.User.create({
       id: req.body.id,
