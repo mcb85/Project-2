@@ -1,47 +1,47 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $blogPostTitle = $("#blog-post-title");
+var $blogPost = $("#blog-post");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $blogList = $("#blogPost-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  savePost: function(post) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/posts",
+      data: JSON.stringify(post)
     });
   },
-  getExamples: function() {
+  getPosts: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/posts",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deletePosts: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/posts/" + id,
       type: "DELETE"
     });
   }
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshPosts = function() {
+  API.getPosts().then(function(data) {
+    var $posts = data.map(function(post) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(post.title)
+        .attr("href", "/post/" + post.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": post.id
         })
         .append($a);
 
@@ -54,8 +54,8 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $blogList.empty();
+    $blogList.append($posts);
   });
 };
 
@@ -64,22 +64,21 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var post = {
+    $title: $blogPostTitle.val().trim(),
+    $blog: $blogPost.val().trim()
   };
-
-  if (!(example.text && example.description)) {
+  if (!(post.title && post.blog)) {
     alert("You must enter an example text and description!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.savePost(post).then(function() {
+    refreshPosts();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $blogPostTitle.val("");
+  $blogPost.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -89,11 +88,11 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deletePosts(idToDelete).then(function() {
+    refreshPosts();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$blogList.on("click", ".delete", handleDeleteBtnClick);
