@@ -1,33 +1,110 @@
 <div id="home">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <span>
+      <i class="fa fa-puzzle-piece"></i></span>
+    <br>
+    <a class="navbar-brand" href="/">Full Spectrum</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+      aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/events-calendar">Events Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/resources">Resources</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="jumbotron" style="background-image: url(affection1.jpg);">
+    <h1 class="display-3 text-white">Welcome to Full Spectrum</h1>
+  </div>
+
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+      <div class="col-sm-8">
+        <div class="card mx-auto mb-5">
+          <div class="card-body offset-2" id="welcome">
+            <h2 class="card-title">About Us</h2>
+            <p>Full Spectrum is a forum for families of children with Autism Spectrum Disorder. Our hope is to create a community where
+              families can gather
+              to share ideas, discuss issues, as well as access resources and events in the community. While this is a
+              free website for families, a user
+              account must be created to access resources, write blog posts, and share in discussions with other users.
+              To create your account, please click on the button below.
+            </p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a>
+            </p>
           </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <form class="form-signin">
+          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<footer class="page-footer bg-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h5 class="white-text"></h5>
+        <p class="white-text">
+          <ul>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+      </div>
+
+      <div class="col-sm-6">
+        <h5 class="text-white">Support</h5>
+        <ul>
+          <li><a class="text-white" href="#!">Contact Us</a></li>
+          <li><a class="text-white" href="#!">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      <div class="text-muted">&copy;Full Spectrum 2020</div>
+    </div>
+  </div>
+</footer>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
