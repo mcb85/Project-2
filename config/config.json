@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "",
-    "database": "exampledb",
+    "password": "password",
+    "database": "fullSpectrum",
     "host": "localhost",
     "dialect": "mysql"
   },
