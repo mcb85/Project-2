@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Newcoder!9",
+    "password": "password",
     "database": "fullSpectrum",
     "host": "localhost",
     "dialect": "mysql"
