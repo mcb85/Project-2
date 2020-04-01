@@ -1,93 +1,69 @@
+// Requiring our Todo model
 var db = require("../models");
-// const express = require("express");
-// const bodyParser = require('body-parser');
-const jwt = require("jsonwebtoken");
-// import passport and passport-jwt modules
-const passport = require("passport");
-const passportJWT = require("passport-jwt");
-// ExtractJwt to help extract the token
-let ExtractJwt = passportJWT.ExtractJwt;
-// JwtStrategy which is the strategy for the authentication
-let JwtStrategy = passportJWT.Strategy;
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = "wowow";
-// eslint-disable-next-line no-unused-vars
-const createUser = async ({ name, password }) => {
-  return await db.User.create({ name, password });
-};
-// eslint-disable-next-line no-unused-vars
-const getAllUsers = async () => {
-  return await db.User.findAll();
-};
-const getUser = async obj => {
-  return await db.User.findOne({
-    where: obj
-  });
-};
 
-// eslint-disable-next-line camelcase
-let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-  console.log("payload received", jwt_payload);
-  // eslint-disable-next-line camelcase
-  let user = getUser({ id: jwt_payload.id });
-  if (user) {
-    next(null, user);
-  } else {
-    next(null, false);
-  }
-});
-// use the strategy
-passport.use(strategy);
-
+// Routes
+// =============================================================
 module.exports = function(app) {
-  app.use(passport.initialize());
-  // get all users
-  app.get("/api/users/", function(req, res) {
-    db.User.findAll({}).then(function(dbUser) {
-      res.json(dbUser);
+  // GET route for getting all of the posts
+  app.get("/api/posts/", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
-  //get one user
-  app.get("/api/users/:user/", function(req, res) {
-    db.User.findAll({
+
+  // Get route for returning posts of a specific category
+  app.get("/api/posts/category/:category", function(req, res) {
+    db.Post.findAll({
       where: {
-        id: req.params.user
+        category: req.params.category
       }
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
-  // register route
-  app.post("/api/user", function(req, res) {
+
+  // Get route for retrieving a single post
+  app.get("/api/posts/:id", function(req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  // POST route for saving a new post
+  app.post("/api/posts", function(req, res) {
     console.log(req.body);
-    db.User.create({
-      id: req.body.id,
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    }).then(function(dbCreateUser) {
-      res.json(dbCreateUser);
+    db.Post.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
-  app.post("/login", async function(req, res) {
-    const { name, password } = req.body;
-    if (name && password) {
-      // we get the user with the name and save the resolved promise
-      // returned;
-      let user = await getUser({ name });
-      if (!user) {
-        res.status(401).json({ msg: "No such user found", user });
+
+  // DELETE route for deleting posts
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
       }
-      if (user.password === password) {
-        // from now on we’ll identify the user by the id and the id is
-        // the only personalized value that goes into our token
-        let payload = { id: user.id };
-        let token = jwt.sign(payload, jwtOptions.secretOrKey);
-        res.json({ msg: "ok", token: token });
-      } else {
-        res.status(401).json({ msg: "Password is incorrect" });
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  // PUT route for updating posts
+  app.put("/api/posts", function(req, res) {
+    db.Post.update(req.body, {
+      where: {
+        id: req.body.id
       }
-    }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
   });
 };
