@@ -46,11 +46,52 @@
               To create your account, please click on the button below.
             </p>
             <p class="lead">
-              <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a>
+               <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLong">
+    Sign Up
+  </button>
             </p>
           </div>
         </div>
       </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ModalLong" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLongTitle">Create User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form class="clearfix mb-4" action="POST">
+              <div class="form-group">
+                <label for="user-name">Name</label>
+                <input type="text" id="user-name" class="form-control" aria-describedby="user-name"
+                  placeholder="Enter Name" />
+              </div>
+              <div class="form-group">
+                <label for="email-address">Email Address</label>
+                <textarea class="form-control" id="email-address" aria-describedby="email-address" placeholder="name@email.com"></textarea>
+              </div>
+            </form>
+            <div class="form-group">
+              <label for="password">Create Password</label>
+              <textarea class="form-control" id="password" aria-describedby="password"
+                placeholder="Password must be at least 8 characters"></textarea>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <div class="col-sm-4">
         <form class="form-signin">
