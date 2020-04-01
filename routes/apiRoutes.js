@@ -12,6 +12,19 @@ let JwtStrategy = passportJWT.Strategy;
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = "wowow";
+// eslint-disable-next-line no-unused-vars
+const createUser = async ({ name, password }) => {
+  return await db.User.create({ name, password });
+};
+// eslint-disable-next-line no-unused-vars
+const getAllUsers = async () => {
+  return await db.User.findAll();
+};
+const getUser = async obj => {
+  return await db.User.findOne({
+    where: obj
+  });
+};
 
 // eslint-disable-next-line camelcase
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
