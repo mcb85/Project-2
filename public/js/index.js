@@ -80,8 +80,6 @@ var handleFormSubmit = function(event) {
   $blogPost.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
@@ -92,7 +90,6 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-// Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $blogList.on("click", ".delete", handleDeleteBtnClick);
 
@@ -102,27 +99,26 @@ var $password = $("#password");
 var $saveBtn = $("#save");
 var $userList = $("#user-list");
 
-// The API object contains methods for each kind of request we'll make
 var createUserAPI = {
-  saveUser: function(User) {
+  saveUser: function(user) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/users",
-      data: JSON.stringify(User)
+      url: "api/user",
+      data: JSON.stringify(user)
     });
   },
   getUsers: function() {
     return $.ajax({
-      url: "api/users",
+      url: "api/user",
       type: "GET"
     });
   },
-  deleteUsers: function(id) {
+  deleteUser: function(id) {
     return $.ajax({
-      url: "api/users/" + id,
+      url: "api/user/" + id,
       type: "DELETE"
     });
   }
@@ -130,15 +126,15 @@ var createUserAPI = {
 
 var refreshUsers = function() {
   createUserAPI.getUsers().then(function(data) {
-    var $User = data.map(function(User) {
+    var $users = data.map(function(user) {
       var $a = $("<a>")
-        .text(User.name)
-        .attr("href", "/user/" + User.id);
+        .text(user.name)
+        .attr("href", "/user/" + user.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": User.id
+          "data-id": user.id
         })
         .append($a);
 
@@ -152,26 +148,25 @@ var refreshUsers = function() {
     });
 
     $userList.empty();
-    $userList.append($User);
+    $userList.append($users);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new user
-// Save the new user to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var newUser = {
-    $username: $userName.val().trim(),
-    $email: $emailAddress.val().trim(),
-    $password: $password.val().trim()
+    name: $userName.val().trim(),
+    email: $emailAddress.val().trim(),
+    password: $password.val().trim()
   };
-  if (!(newUser.username && newUser.email && newUser.password)) {
+  console.log(newUser);
+  if (!(newUser.name && newUser.email && newUser.password)) {
     alert("You must enter all fields!");
     return;
   }
 
-  createUserAPI.saveUsers(User).then(function() {
+  createUserAPI.saveUser(newUser).then(function() {
     refreshUsers();
   });
 
@@ -180,20 +175,77 @@ var handleFormSubmit = function(event) {
   $password.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the user from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  createUserAPI.deleteUsers(idToDelete).then(function() {
+  createUserAPI.deleteUser(idToDelete).then(function() {
     refreshUsers();
   });
 };
 
-// Add event listeners to the submit and delete buttons
 $saveBtn.on("click", handleFormSubmit);
 $userList.on("click", ".delete", handleDeleteBtnClick);
 
+/*var $inputEmail = $("#inputEmail");
+var $inputPassword = $("#inputPassword");
+var $loginBtn = $("#login");
 
+var loginApi = {
+  saveLogin: function(login) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/login",
+      data: JSON.stringify(login)
+    });
+  }
+};
+
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var login = {
+    $email: $inputEmail.val().trim(),
+    $password: $inputPassword.val().trim()
+  };
+  if (!(login.email && login.password)) {
+    alert("You must enter an email address and password!");
+    return;
+  }
+
+  loginAPI.saveLogin();
+
+  $inputEmail.val("");
+  $inputPassword.val("");
+};
+
+$loginBtn.on("click", handleFormSubmit);*/
+
+/*$(document).ready(function() {
+  $("login").click(function() {
+    $.ajax({
+      type: "POST",
+      url: "/login",
+      data: {
+        emailAddress: $("#inputEmail").val(),
+        password: $("#inputPassword").val()
+      },
+      success: function(result) {
+        if (!result) {
+          console.log("success!");
+          //$('form input[name="username"]').css("background-color", "red");
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log(thrownError);
+      }
+    });
+
+    return false;
+  });
+});*/
