@@ -3,12 +3,12 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index")
+    res.render("index");
   });
 
-  app.get("/events", function(req, res){
-    res.render("events-calendar")
-  })
+  app.get("/events", function(req, res) {
+    res.render("events-calendar");
+  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
