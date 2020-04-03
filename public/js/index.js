@@ -188,45 +188,8 @@ var handleDeleteBtnClick = function() {
 $saveBtn.on("click", handleFormSubmit);
 $userList.on("click", ".delete", handleDeleteBtnClick);
 
-/*var $inputEmail = $("#inputEmail");
-var $inputPassword = $("#inputPassword");
-var $loginBtn = $("#login");
-
-var loginApi = {
-  saveLogin: function(login) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/login",
-      data: JSON.stringify(login)
-    });
-  }
-};
-
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var login = {
-    $email: $inputEmail.val().trim(),
-    $password: $inputPassword.val().trim()
-  };
-  if (!(login.email && login.password)) {
-    alert("You must enter an email address and password!");
-    return;
-  }
-
-  loginAPI.saveLogin();
-
-  $inputEmail.val("");
-  $inputPassword.val("");
-};
-
-$loginBtn.on("click", handleFormSubmit);*/
-
 /*$(document).ready(function() {
-  $("login").click(function() {
+  $("#login").submit(function() {
     $.ajax({
       type: "POST",
       url: "/login",
@@ -237,6 +200,7 @@ $loginBtn.on("click", handleFormSubmit);*/
       success: function(result) {
         if (!result) {
           console.log("success!");
+          console.log(emailAddress && password);
           //$('form input[name="username"]').css("background-color", "red");
         }
       },
