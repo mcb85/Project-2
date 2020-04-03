@@ -71,11 +71,13 @@ module.exports = function(app) {
     });
   });
   app.post("/login", async function(req, res) {
-    const { name, password } = req.body;
-    if (name && password) {
+    console.log("test endpoint");
+    console.log(req.body);
+    const { email, password } = req.body;
+    if (email && password) {
       // we get the user with the name and save the resolved promise
       // returned;
-      let user = await getUser({ name });
+      let user = await getUser({ email });
       if (!user) {
         res.status(401).json({ msg: "No such user found", user });
       }
@@ -85,6 +87,7 @@ module.exports = function(app) {
         let payload = { id: user.id };
         let token = jwt.sign(payload, jwtOptions.secretOrKey);
         res.json({ msg: "ok", token: token });
+        return res.redirect("/blog/");
       } else {
         res.status(401).json({ msg: "Password is incorrect" });
       }
