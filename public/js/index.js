@@ -188,8 +188,9 @@ var handleDeleteBtnClick = function() {
 $saveBtn.on("click", handleFormSubmit);
 $userList.on("click", ".delete", handleDeleteBtnClick);
 
-/*$(document).ready(function() {
+$(document).ready(function() {
   $("#login").submit(function() {
+    console.log("login");
     $.ajax({
       type: "POST",
       url: "/login",
@@ -212,4 +213,4 @@ $userList.on("click", ".delete", handleDeleteBtnClick);
 
     return false;
   });
-});*/
+});
