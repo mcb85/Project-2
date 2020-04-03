@@ -10,6 +10,7 @@ module.exports = function(app) {
     res.render("events-calendar");
   });
 
+
   app.get("/blog", function(req, res) {
     res.render("blog");
   });
