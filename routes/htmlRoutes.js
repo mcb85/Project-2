@@ -11,6 +11,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/events", function(req, res){
+    res.render("events-calendar")
+  })
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({
