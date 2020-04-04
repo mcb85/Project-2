@@ -190,6 +190,7 @@ $userList.on("click", ".delete", handleDeleteBtnClick);
 
 $(document).ready(function() {
   $("#login").submit(function() {
+    event.preventDefault();
     console.log("login");
     $.ajax({
       type: "POST",

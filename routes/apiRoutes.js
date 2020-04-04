@@ -2,44 +2,44 @@ var db = require("../models");
 // const express = require("express");
 // const bodyParser = require('body-parser');
 // eslint-disable-next-line no-unused-vars
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 // import passport and passport-jwt modules
 const passport = require("../config/passport");
 const passportJWT = require("passport-jwt");
 // ExtractJwt to help extract the token
-let ExtractJwt = passportJWT.ExtractJwt;
-// JwtStrategy which is the strategy for the authentication
-let JwtStrategy = passportJWT.Strategy;
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = "wowow";
-// eslint-disable-next-line no-unused-vars
-const createUser = async ({ name, password }) => {
-  return await db.User.create({ name, password });
-};
-// eslint-disable-next-line no-unused-vars
-const getAllUsers = async () => {
-  return await db.User.findAll();
-};
-const getUser = async obj => {
-  return await db.User.findOne({
-    where: obj
-  });
-};
+// let ExtractJwt = passportJWT.ExtractJwt;
+// // JwtStrategy which is the strategy for the authentication
+// let JwtStrategy = passportJWT.Strategy;
+// let jwtOptions = {};
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// jwtOptions.secretOrKey = "wowow";
+// // eslint-disable-next-line no-unused-vars
+// const createUser = async ({ name, password }) => {
+//   return await db.User.create({ name, password });
+// };
+// // eslint-disable-next-line no-unused-vars
+// const getAllUsers = async () => {
+//   return await db.User.findAll();
+// };
+// const getUser = async obj => {
+//   return await db.User.findOne({
+//     where: obj
+//   });
+// };
 
-// eslint-disable-next-line camelcase
-let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-  console.log("payload received", jwt_payload);
-  // eslint-disable-next-line camelcase
-  let user = getUser({ id: jwt_payload.id });
-  if (user) {
-    next(null, user);
-  } else {
-    next(null, false);
-  }
-});
+// // eslint-disable-next-line camelcase
+// let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+//   console.log("payload received", jwt_payload);
+//   // eslint-disable-next-line camelcase
+//   let user = getUser({ id: jwt_payload.id });
+//   if (user) {
+//     next(null, user);
+//   } else {
+//     next(null, false);
+//   }
+// });
 // use the strategy
-passport.use(strategy);
+// passport.use(strategy);
 
 module.exports = function(app) {
   app.use(passport.initialize());
@@ -71,13 +71,20 @@ module.exports = function(app) {
       res.json(dbCreateUser);
     });
   });
-  app.post("/login", passport.authenticate("local"), function(req, res) {
-    res.redirect("/blog/");
-  });
-  app.post("/signup", passport.authenticate("local"), function(req, res) {
-    console.log(res);
-    res.redirect("/blog");
-  });
+  app.post(
+    "/login",
+    passport.authenticate("local-signin", {
+      successRedirect: "/blog",
+      failureRedirect: "/signup"
+    })
+  );
+  app.post(
+    "/signup",
+    passport.authenticate("local", {
+      successRedirect: "/blog",
+      failureRedirect: "/"
+    })
+  );
   // )
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {

@@ -3,7 +3,7 @@ var passport = require("passport"),
 var db = require("../models");
 
 passport.use(
-  "local",
+  "local-signup",
   new LocalStrategy(function(email, password, done) {
     db.User.findOne({ where: { email: email } }, function(err, user) {
       if (err) {
@@ -19,6 +19,30 @@ passport.use(
       });
     });
   })
+);
+
+passport.use(
+  "local-signin",
+  new LocalStrategy(
+    {
+      usernameField: "email"
+    },
+    function(email, password, done) {
+      db.User.findOne({ where: { email: email } }).then(function(user) {
+        if (!user) {
+          return done(null, false, {
+            message: "Incorrect username or password"
+          });
+        }
+        if (!user.verifyPassword(password)) {
+          return done(null, false, {
+            message: "Incorrect username or password"
+          });
+        }
+        return done(null, user);
+      });
+    }
+  )
 );
 
 passport.serializeUser(function(user, done) {
