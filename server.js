@@ -1,9 +1,10 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
+// eslint-disable-next-line no-unused-vars
+var session = require("express-session");
 var db = require("./models");
-
+var passport = require("./config/passport");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -43,5 +44,7 @@ db.sequelize.sync(syncOptions).then(function() {
     );
   });
 });
+app.use(passport.initialize());
+app.use(passport.session());
 
 module.exports = app;

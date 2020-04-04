@@ -39,7 +39,8 @@
         <div class="card mx-auto mb-5">
           <div class="card-body offset-2" id="welcome">
             <h2 class="card-title">About Us</h2>
-            <p>Full Spectrum is a forum for families of children with Autism Spectrum Disorder. Our hope is to create a community where
+            <p>Full Spectrum is a forum for families of children with Autism Spectrum Disorder. Our hope is to create a
+              community where
               families can gather
               to share ideas, discuss issues, as well as access resources and events in the community. While this is a
               free website for families, a user
@@ -47,69 +48,72 @@
               To create your account, please click on the button below.
             </p>
             <p class="lead">
-               <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLong">
-    Sign Up
-  </button>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLong">
+                Sign Up
+              </button>
             </p>
           </div>
         </div>
       </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="ModalLong" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLongTitle">Create User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form class="clearfix mb-4" action="POST">
-              <div class="form-group">
-                <label for="user-name">Name</label>
-                <input type="text" id="user-name" class="form-control" aria-describedby="user-name"
-                  placeholder="Enter Name" />
-              </div>
-              <div class="form-group">
-                <label for="email-address">Email Address</label>
-                <textarea class="form-control" id="email-address" aria-describedby="email-address" placeholder="name@email.com"></textarea>
-              </div>
-            </form>
-            <div class="form-group">
-              <label for="password">Create Password</label>
-              <textarea class="form-control" id="password" aria-describedby="password"
-                placeholder="Password must be at least 8 characters"></textarea>
+      <!-- Modal -->
+      <div class="modal fade" id="ModalLong" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLongTitle">Create User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="save">Save changes</button>
+            <div class="modal-body">
+              <form class="clearfix mb-4" action="/signup" method="POST">
+                <div class="form-group">
+                  <label for="user-name">Name</label>
+                  <input type="text" id="user-name" class="form-control" aria-describedby="user-name"
+                    placeholder="Enter Name" />
+                </div>
+                <div class="form-group">
+                  <label for="email-address">Email Address</label>
+                  <textarea class="form-control" id="email-address" aria-describedby="email-address"
+                    placeholder="name@email.com"></textarea>
+                </div>
+              </form>
+              <div class="form-group">
+                <label for="password">Create Password</label>
+                <textarea class="form-control" id="password" aria-describedby="password"
+                  placeholder="Password must be at least 8 characters"></textarea>
+              </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="save">Save changes</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
 {{{msg}}}
       <div class="col-sm-4">
         <form action="/login" method="post">
           <div class="form-group" id="sign-in">
-          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+              required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+              required="">
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Sign in</button>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Sign in</button>
-        </div>
         </form>
       </div>
     </div>
