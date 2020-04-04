@@ -10,7 +10,6 @@ module.exports = function(app) {
     res.render("events-calendar");
   });
 
-
   app.get("/blog", function(req, res) {
     res.render("blog");
   });
@@ -19,11 +18,11 @@ module.exports = function(app) {
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }).then(function(dbExample) {
       res.render("example", {
-        example: dbExample
+        example: dbExample,
       });
     });
   });
