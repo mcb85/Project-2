@@ -95,4 +95,10 @@ module.exports = function(app) {
       res.json(dbEvents);
     });
   });
+
+  app.get("/api/posts", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
 };

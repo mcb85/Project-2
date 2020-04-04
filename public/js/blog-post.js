@@ -33,7 +33,8 @@ var API = {
 
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
-    var $posts = data.map(function(post) {
+    console.log(data);
+    /*var $posts = data.map(function (post) {
       var $a = $("<a>")
         .text(post.title)
         .attr("href", "/post/" + post.id);
@@ -52,10 +53,10 @@ var refreshPosts = function() {
       $li.append($button);
 
       return $li;
-    });
+    });*/
 
-    $blogList.empty();
-    $blogList.append($posts);
+    /*$blogList.empty();
+    $blogList.append($posts);*/
   });
 };
 

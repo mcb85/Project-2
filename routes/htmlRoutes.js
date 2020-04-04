@@ -11,7 +11,12 @@ module.exports = function(app) {
   });
 
   app.get("/blog", function(req, res) {
-    res.render("blog");
+    var currentUser = {
+      id: 1
+    };
+    console.log(currentUser);
+    //res.render("blog", currentUser.id);
+    res.render("blog", { user: currentUser });
   });
 
   app.get("/post", function(req, res) {

@@ -32,7 +32,7 @@
     </div>
 
     <div class="container">
-        <form class="clearfix mb-4">
+        <form class="clearfix mb-4" action="post"
             <div class="form-group">
                 <label for="blog-title">Blog Post Title</label>
                 <input name="title" type="text" id="blog-post-title" class="form-control" aria-describedby="blog-title"
@@ -43,7 +43,7 @@
                 <textarea name="blogPost" type="text" class="form-control" id="blog-post" aria-describedby="blog-post"
                     placeholder="Enter Post"></textarea>
             </div>
-           <input type="hidden" id="userId" name="userId" value="">
+           <input type="hidden" id="userId" name="userId" value="{{user.id}}">
             <!--<ul id="blogPost-list" class="list-group">
                 {{#each User}}
                 <li data-id="{{this.id}}" class="list-group-item">
