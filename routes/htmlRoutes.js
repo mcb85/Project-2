@@ -10,9 +10,16 @@ module.exports = function(app) {
     res.render("events-calendar");
   });
 
-
   app.get("/blog", function(req, res) {
     res.render("blog");
+  });
+
+  app.get("/post", function(req, res) {
+    res.render("post");
+  });
+
+  app.get("/resources", function(req, res) {
+    res.render("resources");
   });
 
   // Load example page and pass in an example by id

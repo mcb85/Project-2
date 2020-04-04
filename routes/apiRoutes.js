@@ -93,6 +93,18 @@ module.exports = function(app) {
       }
     }
   });
+  app.post("/api/posts", function(req, res) {
+    console.log(req.body);
+    db.Post.create({
+      UserId: req.body.UserId,
+      id: req.body.id,
+      title: req.body.title,
+      body: req.body.body
+    }).then(function(dbCreatePost) {
+      res.json(dbCreatePost);
+    });
+  });
+
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {
       res.json(dbEvents);
