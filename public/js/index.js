@@ -29,7 +29,7 @@ var createUserAPI = {
   }
 };
 
-var refreshUsers = function() {
+/*var refreshUsers = function() {
   createUserAPI.getUsers().then(function(data) {
     var $users = data.map(function(user) {
       var $a = $("<a>")
@@ -55,7 +55,7 @@ var refreshUsers = function() {
     $userList.empty();
     $userList.append($users);
   });
-};
+};*/
 
 var handleFormSubmit = function(event) {
   event.preventDefault();
@@ -73,7 +73,7 @@ var handleFormSubmit = function(event) {
   }
 
   createUserAPI.saveUser(newUser).then(function() {
-    refreshUsers();
+    //refreshUsers();
   });
 
   $userName.val("");
@@ -87,36 +87,9 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   createUserAPI.deleteUser(idToDelete).then(function() {
-    refreshUsers();
+    //refreshUsers();
   });
 };
 
 $saveBtn.on("click", handleFormSubmit);
 $userList.on("click", ".delete", handleDeleteBtnClick);
-
-/*$(document).ready(function() {
-  $("#login").submit(function() {
-    console.log("login");
-    $.ajax({
-      type: "POST",
-      url: "/login",
-      data: {
-        emailAddress: $("#inputEmail").val(),
-        password: $("#inputPassword").val()
-      },
-      success: function(result) {
-        if (!result) {
-          console.log("success!");
-          console.log(emailAddress && password);
-          //$('form input[name="username"]').css("background-color", "red");
-        }
-      },
-      error: function(xhr, ajaxOptions, thrownError) {
-        console.log(xhr.status);
-        console.log(thrownError);
-      }
-    });
-
-    return false;
-  });
-});*/
