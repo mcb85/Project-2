@@ -1,9 +1,10 @@
 var db = require("../models");
 // const express = require("express");
 // const bodyParser = require('body-parser');
+// eslint-disable-next-line no-unused-vars
 const jwt = require("jsonwebtoken");
 // import passport and passport-jwt modules
-const passport = require("passport");
+const passport = require("../config/passport");
 const passportJWT = require("passport-jwt");
 // ExtractJwt to help extract the token
 let ExtractJwt = passportJWT.ExtractJwt;
@@ -70,29 +71,14 @@ module.exports = function(app) {
       res.json(dbCreateUser);
     });
   });
-  app.post("/login", async function(req, res) {
-    console.log("test endpoint");
-    console.log(req.body);
-    const { email, password } = req.body;
-    if (email && password) {
-      // we get the user with the name and save the resolved promise
-      // returned;
-      let user = await getUser({ email });
-      if (!user) {
-        res.status(401).json({ msg: "No such user found", user });
-      }
-      if (user.password === password) {
-        // from now on we’ll identify the user by the id and the id is
-        // the only personalized value that goes into our token
-        let payload = { id: user.id };
-        let token = jwt.sign(payload, jwtOptions.secretOrKey);
-        res.json({ msg: "ok", token: token });
-        return res.redirect("/blog/");
-      } else {
-        res.status(401).json({ msg: "Password is incorrect" });
-      }
-    }
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/blog/");
   });
+  app.post("/signup", passport.authenticate("local"), function(req, res) {
+    console.log(res);
+    res.redirect("/blog");
+  });
+  // )
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {
       res.json(dbEvents);
