@@ -5,7 +5,7 @@ var db = require("../models");
 // const jwt = require("jsonwebtoken");
 // import passport and passport-jwt modules
 const passport = require("../config/passport");
-const passportJWT = require("passport-jwt");
+// const passportJWT = require("passport-jwt");
 // ExtractJwt to help extract the token
 // let ExtractJwt = passportJWT.ExtractJwt;
 // // JwtStrategy which is the strategy for the authentication
@@ -80,7 +80,7 @@ module.exports = function(app) {
   );
   app.post(
     "/signup",
-    passport.authenticate("local", {
+    passport.authenticate("local-signup", {
       successRedirect: "/blog",
       failureRedirect: "/"
     })
