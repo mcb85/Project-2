@@ -12,7 +12,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/posts",
+      url: "api/blog",
       data: JSON.stringify(post)
     });
   },
@@ -106,7 +106,7 @@ var createUserAPI = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/user",
+      url: "/signup",
       data: JSON.stringify(user)
     });
   },
@@ -190,6 +190,7 @@ $userList.on("click", ".delete", handleDeleteBtnClick);
 
 $(document).ready(function() {
   $("#login").submit(function() {
+    event.preventDefault();
     console.log("login");
     $.ajax({
       type: "POST",
