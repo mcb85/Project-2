@@ -44,9 +44,9 @@ const passport = require("../config/passport");
 module.exports = function(app) {
   app.use(passport.initialize());
   // get all users
-  app.get("/api/users/", function(req, res) {
-    db.User.findAll({}).then(function(dbUser) {
-      res.json(dbUser);
+  app.get("/api/blog/", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
   //get one user
@@ -60,17 +60,14 @@ module.exports = function(app) {
     });
   });
   // register route
-  // app.post("/api/user", function(req, res) {
-  //   console.log(req.body);
-  //   db.User.create({
-  //     id: req.body.id,
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //     password: req.body.password
-  //   }).then(function(dbCreateUser) {
-  //     res.json(dbCreateUser);
-  //   });
-  // });
+  app.post("/api/blog", function(req, res) {
+    db.Post.create({
+      title: req.body.title,
+      body: req.body.body
+    }).then(function(dbCreatePost) {
+      res.json(dbCreatePost);
+    });
+  });
   app.post(
     "/login",
     passport.authenticate("local-signin", {
