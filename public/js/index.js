@@ -106,7 +106,7 @@ var createUserAPI = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/user",
+      url: "/signup",
       data: JSON.stringify(user)
     });
   },

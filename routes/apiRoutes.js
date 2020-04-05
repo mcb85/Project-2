@@ -60,22 +60,22 @@ module.exports = function(app) {
     });
   });
   // register route
-  app.post("/api/user", function(req, res) {
-    console.log(req.body);
-    db.User.create({
-      id: req.body.id,
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    }).then(function(dbCreateUser) {
-      res.json(dbCreateUser);
-    });
-  });
+  // app.post("/api/user", function(req, res) {
+  //   console.log(req.body);
+  //   db.User.create({
+  //     id: req.body.id,
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //     password: req.body.password
+  //   }).then(function(dbCreateUser) {
+  //     res.json(dbCreateUser);
+  //   });
+  // });
   app.post(
     "/login",
     passport.authenticate("local-signin", {
       successRedirect: "/blog",
-      failureRedirect: "/signup"
+      failureRedirect: "/"
     })
   );
   app.post(
