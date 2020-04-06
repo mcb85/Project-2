@@ -57,6 +57,18 @@ module.exports = function(app) {
     });
   });
 
+  app.delete("/posts/:id", function(req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+      console.log("post deleted");
+      res.render("post", {
+        post: dbPost.dataValues
+      });
+    });
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
