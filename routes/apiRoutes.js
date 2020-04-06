@@ -55,4 +55,15 @@ module.exports = function(app) {
       res.json(dbEvents);
     });
   });
+
+  app.post("/api/events", function(req, res) {
+    db.Events.create({
+      name: req.body.name,
+      date: req.body.date,
+      description: req.body.descrition,
+      location: req.body.location
+    }).then(function(dbEvents) {
+      res.json(dbEvents);
+    });
+  });
 };
