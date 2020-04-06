@@ -1,0 +1,40 @@
+body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hoverEffect {
+    font-size: 29px;
+    position: absolute;
+    margin: 30px 55px;
+    cursor: pointer;
+}
+
+.ui-datepicker-trigger {
+    background: transparent;
+    border: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.datetimepicker .input-group-addon {
+    background-color: #f9f9f9;
+    border-radius: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    height: 2.1em;
+    border: 1px solid #ccc;
+
+}
+
+.fc-state-default.fc-corner-right {
+    border-radius: 0px;
+}
