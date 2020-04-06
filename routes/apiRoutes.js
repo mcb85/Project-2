@@ -1,45 +1,6 @@
 var db = require("../models");
-// const express = require("express");
-// const bodyParser = require('body-parser');
-// eslint-disable-next-line no-unused-vars
-// const jwt = require("jsonwebtoken");
-// import passport and passport-jwt modules
-const passport = require("../config/passport");
-// const passportJWT = require("passport-jwt");
-// ExtractJwt to help extract the token
-// let ExtractJwt = passportJWT.ExtractJwt;
-// // JwtStrategy which is the strategy for the authentication
-// let JwtStrategy = passportJWT.Strategy;
-// let jwtOptions = {};
-// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-// jwtOptions.secretOrKey = "wowow";
-// // eslint-disable-next-line no-unused-vars
-// const createUser = async ({ name, password }) => {
-//   return await db.User.create({ name, password });
-// };
-// // eslint-disable-next-line no-unused-vars
-// const getAllUsers = async () => {
-//   return await db.User.findAll();
-// };
-// const getUser = async obj => {
-//   return await db.User.findOne({
-//     where: obj
-//   });
-// };
 
-// // eslint-disable-next-line camelcase
-// let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-//   console.log("payload received", jwt_payload);
-//   // eslint-disable-next-line camelcase
-//   let user = getUser({ id: jwt_payload.id });
-//   if (user) {
-//     next(null, user);
-//   } else {
-//     next(null, false);
-//   }
-// });
-// use the strategy
-// passport.use(strategy);
+const passport = require("../config/passport");
 
 module.exports = function(app) {
   app.use(passport.initialize());
@@ -98,10 +59,16 @@ module.exports = function(app) {
   );
   app.post(
     "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/blog",
-      failureRedirect: "/"
-    })
+    passport.authenticate(
+      "local-signup",
+      function(res) {
+        console.log(res);
+      },
+      {
+        successRedirect: "/blog",
+        failureRedirect: "/"
+      }
+    )
   );
 
   app.get("/api/events", function(req, res) {

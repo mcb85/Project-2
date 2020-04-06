@@ -36,21 +36,21 @@ var createUserAPI = {
         .text(user.name)
         .attr("href", "/user/" + user.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": user.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": user.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
     $userList.empty();
     $userList.append($users);
@@ -72,13 +72,11 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  createUserAPI.saveUser(newUser).then(function() {
-    //refreshUsers();
-  });
+  createUserAPI.saveUser(newUser);
 
-  $userName.val("");
-  $emailAddress.val("");
-  $password.val("");
+  // $userName.val("");
+  // $emailAddress.val("");
+  // $password.val("");
 };
 
 var handleDeleteBtnClick = function() {
@@ -87,7 +85,7 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   createUserAPI.deleteUser(idToDelete).then(function() {
-    //refreshUsers();
+    console.log("User deleted");
   });
 };
 
