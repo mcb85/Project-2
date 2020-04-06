@@ -78,7 +78,6 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/api/posts", function(req, res) {
     db.Post.findAll({}).then(function(dbPost) {
       res.json(dbPost);
@@ -98,6 +97,8 @@ module.exports = function(app) {
   app.delete("/api/posts/:id", function(req, res) {
     db.Post.destroy({ where: { id: req.params.id } }).then(function(dbPost) {
       res.json(dbPost);
+    });
+  });
 
   app.post("/api/events", function(req, res) {
     db.Events.create({
@@ -107,7 +108,6 @@ module.exports = function(app) {
       location: req.body.location
     }).then(function(dbEvents) {
       res.json(dbEvents);
-
     });
   });
 };
