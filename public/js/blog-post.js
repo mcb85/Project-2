@@ -34,10 +34,17 @@ var API = {
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
     console.log(data);
-    /*var $posts = data.map(function (post) {
+    var $posts = data.map(function(post) {
       var $a = $("<a>")
         .text(post.title)
-        .attr("href", "/post/" + post.id);
+        .attr("href", "/posts/" + post.id);
+      console.log(post);
+
+      /*var $userId = $("#userId")
+        .attr({
+          value: post.UserId
+        });
+      $userId;*/
 
       var $li = $("<li>")
         .attr({
@@ -53,10 +60,10 @@ var refreshPosts = function() {
       $li.append($button);
 
       return $li;
-    });*/
+    });
 
-    /*$blogList.empty();
-    $blogList.append($posts);*/
+    $blogList.empty();
+    $blogList.append($posts);
   });
 };
 
@@ -70,7 +77,6 @@ var handlePostSubmit = function(event) {
     body: $blogPost.val().trim()
   };
 
-  //post.id = db.Post.UserId;
   console.log(post.UserId && post.title && post.body);
   if (!(post.title && post.body)) {
     alert("You must enter a title and post!");

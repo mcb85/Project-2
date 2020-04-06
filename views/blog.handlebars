@@ -32,7 +32,7 @@
     </div>
 
     <div class="container">
-        <form class="clearfix mb-4" action="post">
+        <form class="clearfix mb-4" id="createPost" action="/post" method="Post">
             <div class="form-group">
                 <label for="blog-title">Blog Post Title</label>
                 <input name="title" type="text" id="blog-post-title" class="form-control" aria-describedby="blog-title"
@@ -52,12 +52,12 @@
         </form>
         <h3>Blog Posts:</h3>
         <ul id="blogPost-list" class="list-group">
-            {{#each Post}}
-            <li data-id="{{this.Id}}" class="list-group-item">
-                <a href="blog/{{this.UserId}}{{this.id}}">{{this.title}} {{this.body}}</a>
+            <!--{{#each Post}}
+            <li data-id="{{this.id}}" class="list-group-item">
+                <a href="post/{{this.id}}">{{this.title}}</a>
                 <button class="btn btn-danger float-right delete">ｘ</button>
             </li>
-            {{/each}}
+            {{/each}}-->
         </ul>
 
     </div>

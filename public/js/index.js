@@ -11,7 +11,7 @@ var createUserAPI = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/user",
+      url: "/signup",
       data: JSON.stringify(user)
     });
   },
@@ -93,3 +93,31 @@ var handleDeleteBtnClick = function() {
 
 $saveBtn.on("click", handleFormSubmit);
 $userList.on("click", ".delete", handleDeleteBtnClick);
+
+$(document).ready(function() {
+  $("#login").submit(function() {
+    event.preventDefault();
+    console.log("login");
+    $.ajax({
+      type: "POST",
+      url: "/login",
+      data: {
+        emailAddress: $("#inputEmail").val(),
+        password: $("#inputPassword").val()
+      },
+      success: function(result) {
+        if (!result) {
+          console.log("success!");
+          console.log(emailAddress && password);
+          //$('form input[name="username"]').css("background-color", "red");
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log(thrownError);
+      }
+    });
+
+    return false;
+  });
+});

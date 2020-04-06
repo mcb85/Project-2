@@ -19,6 +19,21 @@ module.exports = function(app) {
     res.render("blog", { user: currentUser });
   });
 
+  /*app.get("/blog", function (req, res) {
+    db.Post.findOne({
+     where: {
+       UserId: request.params.UserId
+     }
+    }).then(function (dbUserId) {
+     console.log("postuser")
+      console.log(dbUserId);
+      
+     //res.render("blog", currentUser.id);
+     res.render("blog", { user: dbUserId.dataValues });
+   });
+ });*/
+
+
   app.get("/post", function(req, res) {
     res.render("post");
   });
@@ -28,14 +43,16 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({
+  app.get("/posts/:id", function(req, res) {
+    db.Post.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
+    }).then(function(dbPost) {
+      console.log("Post ");
+      console.log(dbPost);
+      res.render("post", {
+        post: dbPost.dataValues
       });
     });
   });
