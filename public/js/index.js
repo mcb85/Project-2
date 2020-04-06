@@ -18,7 +18,7 @@ var API = {
   },
   getPosts: function() {
     return $.ajax({
-      url: "api/posts",
+      url: "api/blog",
       type: "GET"
     });
   },
@@ -124,33 +124,33 @@ var createUserAPI = {
   }
 };
 
-var refreshUsers = function() {
-  createUserAPI.getUsers().then(function(data) {
-    var $users = data.map(function(user) {
-      var $a = $("<a>")
-        .text(user.name)
-        .attr("href", "/user/" + user.id);
+// var refreshUsers = function() {
+//   createUserAPI.getUsers().then(function(data) {
+//     var $users = data.map(function(user) {
+//       var $a = $("<a>")
+//         .text(user.name)
+//         .attr("href", "/user/" + user.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": user.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": user.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $userList.empty();
-    $userList.append($users);
-  });
-};
+//     $userList.empty();
+//     $userList.append($users);
+//   });
+// };
 
 var handleFormSubmit = function(event) {
   event.preventDefault();
@@ -166,13 +166,11 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  createUserAPI.saveUser(newUser).then(function() {
-    refreshUsers();
-  });
+  createUserAPI.saveUser(newUser);
 
-  $userName.val("");
-  $emailAddress.val("");
-  $password.val("");
+  // $userName.val("");
+  // $emailAddress.val("");
+  // $password.val("");
 };
 
 var handleDeleteBtnClick = function() {
