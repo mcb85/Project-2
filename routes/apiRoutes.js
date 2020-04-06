@@ -29,6 +29,27 @@ module.exports = function(app) {
       res.json(dbCreatePost);
     });
   });
+
+  /* app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/blog/");
+  });*/
+  /* app.post("/signup", passport.authenticate("local"), function(req, res) {
+    console.log(res);
+    res.redirect("/blog");
+  });*/
+
+  app.post("/api/posts", function(req, res) {
+    console.log(req.body);
+    db.Post.create({
+      UserId: req.body.UserId,
+      id: req.body.id,
+      title: req.body.title,
+      body: req.body.body
+    }).then(function(dbCreatePost) {
+      res.json(dbCreatePost);
+    });
+  });
+
   app.post(
     "/login",
     passport.authenticate("local-signin", {
@@ -36,6 +57,7 @@ module.exports = function(app) {
       failureRedirect: "/"
     })
   );
+
   app.post(
     "/signup",
     passport.authenticate(
@@ -49,12 +71,33 @@ module.exports = function(app) {
       }
     )
   );
-  // )
+
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {
       res.json(dbEvents);
     });
   });
+
+
+  app.get("/api/posts", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  app.get("/api/users/:user/posts", function(req, res) {
+    db.Post.findAll({
+      where: {
+        UserId: req.params.user
+      }
+    }).then(function(dbPosts) {
+      res.json(dbPosts);
+    });
+  });
+
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({ where: { id: req.params.id } }).then(function(dbPost) {
+      res.json(dbPost);
 
   app.post("/api/events", function(req, res) {
     db.Events.create({
@@ -64,6 +107,7 @@ module.exports = function(app) {
       location: req.body.location
     }).then(function(dbEvents) {
       res.json(dbEvents);
+
     });
   });
 };
