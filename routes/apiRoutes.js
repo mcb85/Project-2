@@ -57,6 +57,7 @@ module.exports = function(app) {
       failureRedirect: "/"
     })
   );
+
   app.post(
     "/signup",
     passport.authenticate(

@@ -15,14 +15,17 @@ module.exports = function(app) {
       id: 1
     };
     console.log(currentUser);
-    //res.render("blog", currentUser.id);
     res.render("blog", { user: currentUser });
   });
+
+  // app.post("/login", function(req, res) {
+  //   res.render("blog", { user: req.params.user.dataValues });
+  // });
 
   /*app.get("/blog", function (req, res) {
     db.Post.findOne({
      where: {
-       UserId: request.params.UserId
+       UserId: req.params.UserId
      }
     }).then(function (dbUserId) {
      console.log("postuser")
@@ -32,7 +35,6 @@ module.exports = function(app) {
      res.render("blog", { user: dbUserId.dataValues });
    });
  });*/
-
 
   app.get("/post", function(req, res) {
     res.render("post");

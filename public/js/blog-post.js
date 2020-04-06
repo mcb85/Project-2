@@ -70,7 +70,6 @@ var refreshPosts = function() {
 var handlePostSubmit = function(event) {
   console.log("test");
   event.preventDefault();
-
   var post = {
     UserId: $userId.val().trim(),
     title: $blogPostTitle.val().trim(),
