@@ -40,12 +40,6 @@ var refreshPosts = function() {
         .attr("href", "/posts/" + post.id);
       console.log(post);
 
-      /*var $userId = $("#userId")
-        .attr({
-          value: post.UserId
-        });
-      $userId;*/
-
       var $li = $("<li>")
         .attr({
           class: "list-group-item",

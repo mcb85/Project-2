@@ -9,9 +9,22 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
+
 app.use(express.json());
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+
+/*app.use(
+  session({ secret: "dont-say-a-word", resave: true, saveUninitialized: true })
+);*/
+//app.use(passport.initialize());
+/*app.use(
+  passport.session({
+    secret: "dont-say-a-word",
+    resave: true,
+    saveUninitialized: true
+  })
+);*/
 
 // Handlebars
 app.engine(
