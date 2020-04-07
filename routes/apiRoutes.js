@@ -6,6 +6,7 @@ module.exports = function(app) {
   app.use(passport.initialize());
   // get all users
   app.get("/api/blog/", function(req, res) {
+    console.log(req.User);
     db.Post.findAll({}).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -30,16 +31,7 @@ module.exports = function(app) {
     });
   });
 
-  /* app.post("/login", passport.authenticate("local"), function(req, res) {
-    res.redirect("/blog/");
-  });*/
-  /* app.post("/signup", passport.authenticate("local"), function(req, res) {
-    console.log(res);
-    res.redirect("/blog");
-  });*/
-
   app.post("/api/posts", function(req, res) {
-    console.log(req.body);
     db.Post.create({
       UserId: req.body.UserId,
       id: req.body.id,
@@ -104,10 +96,14 @@ module.exports = function(app) {
     db.Events.create({
       name: req.body.name,
       date: req.body.date,
-      description: req.body.descrition,
+      description: req.body.description,
       location: req.body.location
     }).then(function(dbEvents) {
       res.json(dbEvents);
     });
   });
+
+  /*app.get("/blog", function(req, res) {
+    res.render("blog", { user: req.user });
+  });*/
 };

@@ -26,8 +26,8 @@
             </ul>
         </div>
     </nav>
-    
-    <div class="jumbotron" >
+    <!--Image by Veeka Skaya from Pixabay-->
+    <div class="jumbotron" style="background-image: url(blog.jpg);" >
         <h1 class="display-3 text-white">Full Spectrum Blog</h1>
     </div>
 
@@ -44,7 +44,7 @@
                     placeholder="Enter Post"></textarea>
             </div>
            
-           <input type="hidden" id="userId" name="userId" value="{{user.id}}">
+          <input type="hidden" id="userId" name="userId" value="{{user.id}}">
             
             <button id="submitPost" class="btn btn-primary float-right">
                 Submit
@@ -52,13 +52,41 @@
         </form>
         <h3>Blog Posts:</h3>
         <ul id="blogPost-list" class="list-group">
-            <!--{{#each Post}}
-            <li data-id="{{this.id}}" class="list-group-item">
-                <a href="post/{{this.id}}">{{this.title}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
-            </li>
-            {{/each}}-->
         </ul>
-
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<footer class="page-footer bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5 class="white-text"></h5>
+                <p class="white-text">
+                    <ul>
+                        <li><a class="white-text" href="#!"></a></li>
+                        <li><a class="white-text" href="#!"></a></li>
+                        <li><a class="white-text" href="#!"></a></li>
+                        <li><a class="white-text" href="#!"></a></li>
+                    </ul>
+            </div>
+
+            <div class="col-sm-6">
+                <h5 class="text-white">Support</h5>
+                <ul>
+                    <li><a class="text-white" href="#!">Contact Us</a></li>
+                    <li><a class="text-white" href="#!">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="text-white">&copy;Full Spectrum 2020</div>
+        </div>
+    </div>
+</footer>

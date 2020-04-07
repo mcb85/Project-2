@@ -24,3 +24,7 @@ footer {
 ul {
     list-style-type: none;
 }
+
+#resource {
+    border: solid 3px;
+}

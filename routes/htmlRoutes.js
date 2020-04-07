@@ -14,27 +14,10 @@ module.exports = function(app) {
     var currentUser = {
       id: 1
     };
-    console.log(currentUser);
+    //console.log(req);
+    //res.render("blog", { user: req.user });
     res.render("blog", { user: currentUser });
   });
-
-  // app.post("/login", function(req, res) {
-  //   res.render("blog", { user: req.params.user.dataValues });
-  // });
-
-  /*app.get("/blog", function (req, res) {
-    db.Post.findOne({
-     where: {
-       UserId: req.params.UserId
-     }
-    }).then(function (dbUserId) {
-     console.log("postuser")
-      console.log(dbUserId);
-      
-     //res.render("blog", currentUser.id);
-     res.render("blog", { user: dbUserId.dataValues });
-   });
- });*/
 
   app.get("/post", function(req, res) {
     res.render("post");
