@@ -9,6 +9,7 @@ To run the app, the user will go to https://fullspectrum1.herokuapp.com/ in the 
 -Node & Express (Server)
 -Express-Handlebars (HTML)
 -MySQL & Sequelize (Database)
+-Full Calendar (Events Calendar)
 
 ## Authors
 Mariana Bromfield, Jordan Kaiser, & Adrian McKenzie
